@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+</head>
+
+<body>
+    <table border="1">
+    </table>
+    <button><a href="../Frontend/index.html">Back</a></button>
+    <script>
+        const get = async() => {
+            const data = await fetch('http://localhost:3000')
+            const d = await data.json();
+            content = `
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email Id</th>
+                <th>Phone Number</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>AddressLine</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Country</th>
+            </tr>
+            `;
+            d.forEach(e => {
+                content += `
+                <tr>
+                <td>${e.Firstname}</td>
+                <td>${e.Lastname}</td>
+                <td>${e.mailid}</td>
+                <td>${e.phoneNumber}</td>
+                <td>${e.dob}</td>
+                <td>${e.gender}</td>
+                <td>${e.addressline}</td>
+                <td>${e.city}</td>
+                <td>${e.state}</td>
+                <td>${e.zip}</td>
+                <td>${e.country}</td>
+            </tr>
+                `
+            });
+            const t = document.querySelector('table')
+            t.innerHTML = content
+        }
+        get();
+    </script>
+</body>
+
+</html>
